@@ -1,0 +1,56 @@
+server:
+  port: 9010
+
+logging:
+  level:
+    com.atguigu.gulimall.order: debug
+    io:
+      seata: debug
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.135.128/gulimall_oms
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.153:8848
+    alibaba:
+      seata:
+        tx-service-group: gulimall-order-server-group
+  application:
+    name: gulimall-order
+  rabbitmq:
+    host: 192.168.135.128
+    virtual-host: my_vhost
+    publisher-confirms: true
+    publisher-returns: true
+    template-mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+    password: root
+    username: root
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.135.128
+    port: 6379
+    password: root
+  session:
+    store-type: redis
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+
+gulimall:
+  thread:
+    core-pool-size: 20
+    max-pool-size: 100
+    keep-alive-time: 60

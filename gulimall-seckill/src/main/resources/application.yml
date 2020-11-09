@@ -1,0 +1,43 @@
+server:
+  port: 25000
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.153:8848
+    sentinel:
+      transport:
+        dashboard: 192.168.2.153:8333
+        port: 8719
+        client-ip: 192.168.2.159
+  application:
+    name: gulimall-seckill
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.135.128
+    port: 6379
+    password: root
+  session:
+    store-type: redis
+  rabbitmq:
+    host: 192.168.135.128
+    virtual-host: my_vhost
+    publisher-confirms: true
+    publisher-returns: true
+    template-mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+    username: root
+    password: root
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #<2>
+
